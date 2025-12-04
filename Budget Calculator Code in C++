@@ -1,0 +1,54 @@
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+struct Item {
+    string name;
+    double cost;
+};
+
+int main() {
+    vector<Item> items;
+    double total = 0.0;
+    int choice;
+
+    do {
+        cout << "\nBudget Calculator\n";
+        cout << "1. Add Item\n";
+        cout << "2. View Expenses\n";
+        cout << "3. View Total\n";
+        cout << "4. Exit\n";
+        cout << "Choose an option: ";
+        cin >> choice;
+
+        if(choice == 1) {
+            Item newItem;
+            cout << "Enter item name: ";
+            cin.ignore();
+            getline(cin, newItem.name);
+            cout << "Enter item cost: ";
+            cin >> newItem.cost;
+            items.push_back(newItem);
+            total += newItem.cost;
+        } 
+        else if(choice == 2) {
+            cout << "\nExpenses:\n";
+            for(const auto& item : items) {
+                cout << item.name << ": $" << item.cost << endl;
+            }
+        } 
+        else if(choice == 3) {
+            cout << "\nTotal Expenses: $" << total << endl;
+        } 
+        else if(choice == 4) {
+            cout << "Exiting...\n";
+        } 
+        else {
+            cout << "Invalid choice, try again.\n";
+        }
+
+    } while(choice != 4);
+
+    return 0;
+}
